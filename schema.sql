@@ -32,3 +32,11 @@ CREATE TABLE infra.incidents (
     server_id INT REFERENCES infra.servers(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE INDEX idx_servers_ip ON infra.servers(ip_address);
+CREATE INDEX idx_incidents_server ON infra.incidents(server_id);
+
+INSERT INTO infra.datacenters (name, location)
+VALUES ('DC1', 'Almaty');
+
+INSERT INTO infra.servers (hostname, ip_address, datacenter_id)
+VALUES ('srv01', '192.168.1.10', 1);
